@@ -1,0 +1,175 @@
+   :root {
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --text-light:#cbd5e1;
+            --text-dim:#94a3b8;
+            --accent-cyan:#06b6d4;
+            --accent-cyan-dark:#0891b2;
+            --border-color:#334155;
+            --green:#4ade80;
+            --yellow:#facc15;
+            --red:#f87171;
+            --blue:#3b82f6;
+            --purple:#a855f7;
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Fundo Animado e Rastro do Cursor --- */
+        #plexus-bg {
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%; z-index: -1;
+        }
+        .trail {
+            position: fixed; pointer-events: none;
+            background-color: var(--accent-cyan);
+            z-index: 9999;
+            box-shadow: 0 0 5px var(--accent-cyan), 0 0 10px var(--accent-cyan);
+            animation: fadeOut 0.6s forwards;
+        }
+        @keyframes fadeOut { to { opacity: 0; transform: scale(0); } }
+
+        /* --- Estilos Gerais e de Layout --- */
+        h1, h2, h3 { font-family: 'Cinzel', serif; font-weight: 700; }
+        .page-content {
+            background-color: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(4px);
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -4px rgba(0,0,0,.1);
+            border: 1px solid var(--border-color);
+        }
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding-top: 5rem; /* Evita que o conteúdo comece sob o menu */
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        .page.active { display: flex; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; } }
+
+        /* --- Menu e Navegação --- */
+        #menu { transition: background-color 0.3s; }
+        #menu.scrolled {
+            background-color: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+        }
+        #menu a.active-link {
+            color: var(--accent-cyan);
+            font-weight: 500;
+            text-shadow: 0 0 8px var(--accent-cyan);
+        }
+        .card-next-btn {
+            background-color: var(--accent-cyan-dark);
+            color: white;
+            font-weight: 700;
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 14px 0 rgba(6, 182, 212, 0.39);
+        }
+        .card-next-btn:hover {
+            background-color: var(--accent-cyan);
+            transform: scale(1.05);
+        }
+       
+        /* --- Simulações Visuais --- */
+        .sim-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            width: 100%;
+        }
+        .sim-card {
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+        }
+        .sim-card h4 {
+            text-align: center;
+            color: var(--accent-cyan);
+            margin-bottom: 1.5rem;
+        }
+        .rr-processes {
+            display: flex;
+            justify-content: center;
+            gap: 1rem; /* Aumentado para mais espaço */
+        }
+        .rr-process {
+            width: 2.5rem; height: 2.5rem; /* Aumentado */
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-weight: bold;
+        }
+        /* Valores ajustados para nova largura e gap */
+        @keyframes rr-spotlight {
+            0%, 100% { transform: translateX(-5.25rem); } /* P1 */
+            25% { transform: translateX(-1.75rem); } /* P2 */
+            50% { transform: translateX(1.75rem); }  /* P3 */
+            75% { transform: translateX(5.25rem); }  /* P4 */
+        }
+        #rr-spotlight {
+            width: 3rem; height: 3rem; /* Aumentado */
+            border: 2px solid var(--yellow);
+            border-radius: 50%;
+            position: absolute;
+            animation: rr-spotlight 8s linear infinite;
+        }
+        .prio-process-bar {
+            background-color: #334155;
+            border-radius: 0.5rem;
+            margin-bottom: 0.75rem;
+            overflow: hidden;
+            position: relative;
+            padding: 0.5rem;
+        }
+        .prio-process-bar::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, var(--accent-cyan-dark), var(--accent-cyan));
+            animation-name: fill-bar;
+            animation-duration: var(--duration, 5s);
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            border-radius: 0.5rem;
+        }
+        @keyframes fill-bar { to { width: 100%; } }
+
+        /* --- Quiz Interativo --- */
+        #quiz-container { max-width: 700px; margin: auto; }
+        .quiz-option {
+            display: block;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .quiz-option:hover {
+            background: #334155;
+            border-color: var(--accent-cyan);
+        }
+        .quiz-option.selected {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 10px var(--accent-cyan);
+        }
+        .quiz-option.correct { background: #166534; border-color: var(--green); }
+        .quiz-option.incorrect { background: #991b1b; border-color: var(--red); }
+        #quiz-results {
+            text-align: center;
+        }

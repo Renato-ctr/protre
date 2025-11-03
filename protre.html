@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processos e Threads</title>
+    <link rel="icon" type="image/x-icon" href="image/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+    <canvas id="plexus-bg"></canvas>
+    <header id="menu" class="fixed top-0 left-0 right-0 z-50 p-4 bg-black bg-opacity-80 backdrop-blur">
+        <nav class="container mx-auto flex justify-center">
+            <ul class="flex flex-wrap justify-center items-center space-x-3 md:space-x-4 text-sm">
+                <li><a href="#inicio" class="nav-link text-gray-300 hover:text-white p-2">Início</a></li>
+                <li><a href="#processos" class="nav-link text-gray-300 hover:text-white p-2">Processos</a></li>
+                <li><a href="#threads" class="nav-link text-gray-300 hover:text-white p-2">Threads</a></li>
+                <li><a href="#sincronizacao" class="nav-link text-gray-300 hover:text-white p-2">Sincronização</a></li>
+                <li><a href="#ferramentas" class="nav-link text-gray-300 hover:text-white p-2">Ferramentas</a></li>
+                <li><a href="#enigmas" class="nav-link text-gray-300 hover:text-white p-2">Enigmas</a></li>
+                <li><a href="#escalonamento" class="nav-link text-gray-300 hover:text-white p-2">Escalonamento</a></li>
+                <li><a href="#simulacoes" class="nav-link text-gray-300 hover:text-white p-2">Simulações</a></li>
+                <li><a href="#quiz" class="nav-link text-gray-300 hover:text-white p-2">Quiz</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="container mx-auto px-4">
+        <section id="welcome" class="page active flex-col justify-center items-center text-center">
+            <div class="max-w-3xl">
+                <h1 class="text-5xl md:text-7xl mb-4 text-white" style="text-shadow: 0 0 15px var(--accent-cyan);">Processos e Threads</h1>
+                <h2 class="text-xl md:text-2xl text-[var(--accent-cyan)] font-semibold mb-8">Desvendando os Mistérios dos Sistemas Operacionais</h2>
+                <button class="next-btn card-next-btn text-lg px-8 py-3">Iniciar Aventura</button>
+            </div>
+        </section>
+        <section id="inicio" class="page flex-col justify-center items-center">
+            <div class="page-content p-8 md:p-12 max-w-4xl w-full">
+                <h1 class="text-3xl md:text-4xl text-center mb-2 text-white">PROCESSOS & THREADS</h1>
+                <p class="text-center text-[var(--accent-cyan)] mb-8">Uma Superprodução do Seu PC</p>
+                <div class="space-y-4 text-gray-300">
+                    <p>Vamos falar um pouquinho sobre “Processos e Threads”, sei que só de ouvir o nome dá um soninho. Mas e se em vez de olhar pra dentro do PC como um monte de código, a gente visse como um estúdio de cinema de Hollywood?</p>
+                    <p>Pensa comigo: cada coisa que você faz no computador, tipo abrir o Chrome, ouvir música, jogar... É uma cena de um filme gigantesco que está sendo produzido agora mesmo. E nesse estúdio, rola mais treta que em filme de luta.</p>
+                    <p>Nossa missão é ser o diretor que entende toda essa bagunça. Então vamos lá.</p>
+                </div>
+                <div class="mt-8 flex justify-end">
+                    <button class="next-btn card-next-btn">Próximo &rarr;</button>
+                </div>
+            </div>
+        </section>
+        <section id="processos" class="page flex-col justify-center items-center">
+            <div class="page-content p-8 md:p-12 max-w-4xl w-full">
+                <h2 class="text-3xl text-[var(--accent-cyan)] mb-4"> A Vida de Astro (O Processo)</h2>
+                <div class="space-y-4 text-gray-300">
+                    <p>No nosso estúdio, cada programa que você abre é um <strong>ATOR PRINCIPAL</strong>, um astro de Hollywood. Pensa no The Rock, na Zendaya. Esse é o Processo. Um ator é mais do que só uma pessoa, certo? Ele é uma "entidade" que envolve um monte de coisas:</p>
+                    <ul class="list-disc list-inside mt-3 space-y-2 pl-4">
+                        <li><strong class="text-white">O Trailer de Luxo (Memória):</strong> Cada ator tem seu próprio trailer, super exclusivo. Ninguém mais entra. No PC, essa é a área de memória do processo.</li>
+                        <li><strong class="text-white">O Roteiro (Código):</strong> O ator tem o roteiro da cena que ele vai gravar. É o passo a passo do que ele tem que fazer.</li>
+                        <li><strong class="text-white">"Em Qual Cena Eu Parei?" (Contador de Programa):</strong> Uma anotação que diz ao ator exatamente qual fala ou ação ele vai fazer em seguida.</li>
+                    </ul>
+                    <p>E a vida de um astro no set não é só glamour. Ele passa por três estados:</p>
+                    <ul class="list-disc list-inside mt-3 space-y-2 pl-4">
+                        <li><strong class="text-green-400">Filmando (Executando):</strong> O ator está na frente da câmera, sob o holofote (a CPU).</li>
+                        <li><strong class="text-yellow-400">No Camarim (Pronto):</strong> Está pronto pra entrar, só esperando sua vez.</li>
+                        <li><strong class="text-red-400">Esperando a Equipe (Bloqueado):</strong> Não pode gravar porque está esperando por algo externo (um arquivo carregar, a internet responder, etc.).</li>
+                    </ul>
+                </div>
+                <div class="mt-8 flex justify-end">
+                    <button class="next-btn card-next-btn">Próximo &rarr;</button>
+                </div>
+            </div>
+        </section>
+        <section id="threads" class="page flex-col justify-center items-center">
+            <div class="page-content p-8 md:p-12 max-w-4xl w-full">
+                <h2 class="text-3xl text-[var(--accent-cyan)] mb-4">Ato II: A Equipe de Dublês (Threads)</h2>
+                <div class="space-y-4 text-gray-300">
+                    <p>Um astro como o Tom Cruise não faz tudo sozinho. Para isso, ele tem uma equipe pessoal: os Dublês, Assistentes, etc. Essa galera são os <strong>Threads</strong>.</p>
+                    <p>As Threads são a "equipe de apoio" de um único ator (Processo). E elas são incríveis por alguns motivos:</p>
+                    <ul class="list-disc list-inside mt-3 space-y-2 pl-4">
+                        <li><strong class="text-white">Eles Moram no Mesmo Trailer:</strong> A equipe toda vive no trailer do astro (compartilham a memória do processo). Isso faz com que a comunicação entre eles seja MUITO rápida.</li>
+                        <li><strong class="text-white">São Leves e Baratos:</strong> Contratar um novo dublê é bem mais fácil e rápido do que contratar um novo ator principal. Criar uma thread é muito mais rápido do que criar um processo.</li>
+                        <li><strong class="text-white">Trabalho em Equipe REAL:</strong> Enquanto o Ator Principal (thread principal) grava, um Dublê (outro thread) se prepara pra pular de um prédio, e o Assistente (um terceiro thread) responde e-mails. Tudo ao mesmo tempo.</li>
+                    </ul>
+                    <p><strong>Exemplo prático:</strong> Pensa no Google Chrome (o Processo). Um thread cuida da aba que você está vendo. Outra, no fundo, tá baixando um arquivo. É a equipe de ninjas dele trabalhando em conjunto.</p>
+                </div>
+                <div class="mt-8 flex justify-end">
+                    <button class="next-btn card-next-btn">Próximo &rarr;</button>
+                </div>
+            </div>
+        </section>
+        <section id="sincronizacao" class="page flex-col justify-center items-center">
+            <div class="page-content p-8 md:p-12 max-w-4xl w-full">
+                <h2 class="text-3xl text-[var(--accent-cyan)] mb-4">Ato III: Caos no Set! (A Sincronização)</h2>
+                <div class="space-y-4 text-gray-300">
+                    <p>O diretor está tentando filmar uma cena com dois astros, mas só tem uma arma cenográfica. O diretor grita "AÇÃO!". O Ator 1 pega a arma. No mesmo instante, o Ator 2 também tenta pegar a arma. A arma cai, quebra, a cena é arruinada. Isso é uma <strong>Condição de Corrida (Race Condition)</strong>.</p>
+                    <p>Para evitar isso, o diretor precisa de regras:</p>
+                    <ul class="list-disc list-inside mt-3 space-y-2 pl-4">
+                        <li><strong class="text-white">"O Cenário Crítico" (Região Crítica):</strong> A parte do set onde está a arma cenográfica é uma área sagrada.</li>
+                        <li><strong class="text-white">"A Regra do Silêncio" (Exclusão Mútua):</strong> A regra mais importante: "SÓ PODE TER UMA PESSOA MEXENDO NA ARMA DE CADA VEZ!".</li>
+                    </ul>
+                    <p>Mas como o diretor garante que essa regra seja seguida? Com suas ferramentas.</p>
+                </div>
+                <div class="mt-8 flex justify-end">
+                    <button class="next-btn card-next-btn">Próximo &rarr;</button>
+                </div>
+            </div>
+        </section>
+        <section id="ferramentas" class="page flex-col justify-center items-center">
+            <div class="page-content p-8 md:p-12 max-w-4xl w-full">
+                <h2 class="text-3xl text-[var(--accent-cyan)] mb-4">Ato IV: Ferramentas do Diretor</h2>
+                <div class="space-y-4 text-gray-300">
+                    <p>Um bom diretor tem uma maleta de ferramentas para não deixar o set virar uma anarquia.</p>
+                    <ul class="list-disc list-inside mt-3 space-y-2 pl-4">
+                        <li><strong class="text-white">O Walkie-Talkie (Mutex):</strong> Um rádio com um único canal. A regra é: "QUEM ESTIVER COM O WALKIE-TALKIE, PODE FILMAR A CENA CRÍTICA". O ator pega o rádio (lock), faz a cena, e depois devolve (unlock).</li>
+                        <li><strong class="text-white">O Segurança da Balada (Semáforo):</strong> O diretor coloca um "segurança" na porta do set. Ele tem um contador de vagas. Se for zero, você espera na fila.</li>
+                        <li><strong class="text-white">A Sala de Ensaio (Monitor):</strong> Salas que, por mágica, só deixam um ator entrar de cada vez. A própria porta já faz o trabalho do segurança. É super seguro, comum em linguagens como Java.</li>
+                    </ul>
+                </div>
+                <div class="mt-8 flex justify-end">
+                    <button class="next-btn card-next-btn">Próximo &rarr;</button>
+                </div>
+            </div>
+        </section>
+        <section id="enigmas" class="page flex-col justify-center items-center">
+            <div class="page-content p-8 md:p-12 max-w-4xl w-full">
+                <h2 class="text-3xl text-[var(--accent-cyan)] mb-4">Ato V: Cenas Clássicas e Premiadas</h2>
+                <div class="space-y-4 text-gray-300">
+                    <p>Todo aspirante a diretor precisa estudar os "filmes clássicos" que quase levaram estúdios à falência.</p>
+                    <ul class="list-disc list-inside mt-3 space-y-2 pl-4">
+                        <li><strong class="text-white">O Jantar Interminável (Deadlock):</strong> A história de 5 atores-filósofos que entram em impasse por causa de garfos. É a cena clássica do "abraço mortal", onde todo mundo espera por todo mundo e a produção para pra sempre.</li>
+                        <li><strong class="text-white">A Biblioteca do Roteiro (Leitores e Escritores):</strong> Vários atores (Leitores) podem ler o roteiro ao mesmo tempo. Mas se o Roteirista (Escritor) precisa corrigir uma página, ele precisa da biblioteca SÓ PRA ELE. O desafio é organizar a fila.</li>
+                    </ul>
+                </div>
+                <div class="mt-8 flex justify-end">
+                    <button class="next-btn card-next-btn">Próximo &rarr;</button>
+                </div>
+            </div>
+        </section>
+        <section id="escalonamento" class="page flex-col justify-center items-center">
+            <div class="page-content p-8 md:p-12 max-w-4xl w-full">
+                <h2 class="text-3xl text-[var(--accent-cyan)] mb-4">Ato VI: Quem Ganha o Holofote?</h2>
+                <div class="space-y-4 text-gray-300">
+                    <p>O trabalho final do Diretor é o <strong>Escalonamento</strong>. Com dezenas de atores prontos, qual deles ele chama para gravar AGORA? O Diretor (o Escalonador) pode ter vários estilos:</p>
+                    <ul class="list-disc list-inside mt-3 space-y-2 pl-4">
+                        <li><strong class="text-white">O Diretor "Justo" (Round Robin):</strong> "Pessoal, todo mundo vai ter 1 minuto de câmera, em ordem. Depois, de volta pro fim da fila!".</li>
+                        <li><strong class="text-white">O Diretor "Estrelinha" (Por Prioridade):</strong> "Atenção! O Tom Cruise (processo de alta prioridade) chegou. Ele vai filmar todas as cenas dele primeiro."</li>
+                        <li><strong class="text-white">O Diretor "Eficiente" (Tarefa Mais Curta Primeiro):</strong> "Qual a cena mais rápida? A do ator que só tem uma fala? Vamos fazer essa primeiro."</li>
+                    </ul>
+                </div>
+                <div class="mt-8 flex justify-end">
+                    <button class="next-btn card-next-btn">Próximo &rarr;</button>
+                </div>
+            </div>
+        </section>
+        <section id="simulacoes" class="page flex-col justify-center items-center">
+            <div class="page-content p-8 md:p-12 max-w-5xl w-full">
+                <h1 class="text-3xl md:text-4xl text-center mb-8 text-white">Simulações Visuais</h1>
+                <div class="sim-container">
+                    <div class="sim-card">
+                        <h4>Escalonamento Round Robin</h4>
+                        <div class="relative h-24 flex items-center justify-center">
+                            <div id="rr-spotlight"></div>
+                            <div class="rr-processes">
+                                <div class="rr-process bg-blue-500">P1</div>
+                                <div class="rr-process bg-green-500">P2</div>
+                                <div class="rr-process bg-purple-500">P3</div>
+                                <div class="rr-process bg-red-500">P4</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sim-card">
+                        <h4>Escalonamento por Prioridade</h4>
+                        <div class="py-2 space-y-">
+                            <div class="prio-process-bar" style="--duration: 2s;"><span class="relative z-10">P1 (Alta)</span></div>
+                            <div class="prio-process-bar" style="--duration: 4s;"><span class="relative z-10">P2 (Média)</span></div>
+                            <div class="prio-process-bar" style="--duration: 6s;"><span class="relative z-10">P3 (Baixa)</span></div>
+                        </div>
+                    </div>
+                    <div class="sim-card">
+                        <h4>Deadlock (Abraço Mortal)</h4>
+                        <div class="h-24 flex flex-col items-center justify-center text-center text-sm">
+                            <p>P1 🔒(Recurso A) ➡️ Quer (Recurso B)</p>
+                            <p>P2 🔒(Recurso B) ➡️ Quer (Recurso A)</p>
+                            <strong class="text-red-400 mt-2 block text-lg">TRAVADO!</strong>
+                        </div>
+                    </div>
+                    <div class="sim-card">
+                        <h4>Processo vs Threads</h4>
+                        <div class="h-24 flex items-center justify-center text-center">
+                            <div class="p-4 border border-dashed border-blue-400 rounded w-full">
+                                <p>Processo (Trailer)</p>
+                                <div class="flex justify-center gap-2 mt-2">
+                                    <div class="bg-purple-500 rounded px-2 py-1 text-xs">Thread 1</div>
+                                    <div class="bg-purple-500 rounded px-2 py-1 text-xs">Thread 2</div>
+                                    <div class="bg-purple-500 rounded px-2 py-1 text-xs">Thread 3</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 flex justify-end">
+                    <button class="next-btn card-next-btn">Ir para o Quiz &rarr;</button>
+                </div>
+            </div>
+        </section>
+        <section id="quiz" class="page flex-col justify-center items-center">
+            <div class="page-content p-8 md:p-12 max-w-4xl w-full">
+                <h1 class="text-3xl md:text-4xl text-center mb-6 text-white">Quiz Interativo</h1>
+                <div id="quiz-container">
+                    <div id="quiz-question-area">
+                        <p id="quiz-progress" class="text-center text-sm text-[var(--text-dim)] mb-2">Pergunta 1 de 25</p>
+                        <h3 id="quiz-question" class="text-xl text-center text-[var(--accent-cyan)] mb-6">Carregando...</h3>
+                        <div id="quiz-options"></div>
+                        <div class="mt-8 flex justify-end">
+                            <button id="quiz-next-btn" class="card-next-btn hidden">Próxima Pergunta &rarr;</button>
+                        </div>
+                    </div>
+                    <div id="quiz-results" class="hidden">
+                        <h2 class="text-3xl text-[var(--accent-cyan)] mb-4">Resultado Final</h2>
+                        <p id="quiz-score" class="text-2xl mb-4"></p>
+                        <p id="quiz-feedback" class="text-lg mb-6"></p>
+                        <button id="quiz-retry-btn" class="card-next-btn">Tentar Novamente</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
